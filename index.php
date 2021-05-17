@@ -43,9 +43,13 @@ $mahasiswa = tampil("SELECT * FROM mahasiswa");
                                 <td><?= $mhs['email']; ?></td>
                                 <td><?= $mhs['jurusan']; ?></td>
                                 <td>
-                                    <a href="hapus.php" onclick="return confirm('Yakin?');"
+                                    <a href="hapus.php?id=<?= $mhs['id']; ?>" onclick="return confirm('Yakin?');"
                                         class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash"></i>
+                                    </a>
+
+                                    <a href="ubah.php?id=<?= $mhs['id']; ?>" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i>
                                     </a>
                                 </td>
                             </tr>
