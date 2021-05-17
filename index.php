@@ -3,7 +3,9 @@ require_once "layouts/header.php";
 require_once "layouts/sidebar.php";
 require_once "logic/function.php";
 $mahasiswa = tampil("SELECT * FROM mahasiswa");
-
+if (isset($_POST['cari'])) {
+    $mahasiswa = cari($_POST['keyword']);
+}
 
 ?>
 
@@ -17,9 +19,24 @@ $mahasiswa = tampil("SELECT * FROM mahasiswa");
         <div class="section-body">
             <div class="card">
                 <div class="card-body">
-                    <a href="tambah.php" class="btn btn-primary my-3">
-                        <i class="fas fa-plus"> Tambah Data</i>
-                    </a>
+                    <div class="row mb-2">
+                        <div class="col-md-8">
+                            <a href="tambah.php" class="btn btn-primary">
+                                <i class="fas fa-plus"> Tambah Data</i>
+                            </a>
+                        </div>
+                        <div class="col-md">
+                            <form action="" method="POST" style="display: inline-block;">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Cari Mahasiswa" name="keyword">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="submit" id="button-addon2"
+                                            name="cari">Cari</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <table class="table table-bordered table-hover table-striped text-center table-responsive">
                         <thead>
                             <tr>
