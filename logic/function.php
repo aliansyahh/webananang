@@ -44,3 +44,21 @@ function tampil($query)
     }
     return $rows;
 }
+
+function tambah($post)
+{
+    global $conn;
+    $nama = htmlspecialchars($_POST["nama"]);
+    $npm = htmlspecialchars($_POST["npm"]);
+    $email = htmlspecialchars($_POST["email"]);
+    $jurusan = htmlspecialchars($_POST["jurusan"]);
+    $gambar = upload();
+
+    if (!$gambar) {
+        return false;
+    }
+
+    $query = "INSERT INTO mahasiswa VALUES (NULL,'$nama','$npm','$email','$jurusan','$gambar')";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}

@@ -1,6 +1,10 @@
 <?php
 require_once "layouts/header.php";
 require_once "layouts/sidebar.php";
+require_once "logic/function.php";
+$mahasiswa = tampil("SELECT * FROM mahasiswa");
+
+
 ?>
 
 <!-- Main Content -->
@@ -13,10 +17,10 @@ require_once "layouts/sidebar.php";
         <div class="section-body">
             <div class="card">
                 <div class="card-body">
-                    <a href="" class="btn btn-primary my-3">
+                    <a href="tambah.php" class="btn btn-primary my-3">
                         <i class="fas fa-plus"> Tambah Data</i>
                     </a>
-                    <table class="table table-bordered table-hover table-striped text-center">
+                    <table class="table table-bordered table-hover table-striped text-center table-responsive">
                         <thead>
                             <tr>
                                 <th style="width: 1%;">No</th>
@@ -30,19 +34,22 @@ require_once "layouts/sidebar.php";
                         </thead>
                         <tbody>
                             <?php $no = 1; ?>
+                            <?php foreach ($mahasiswa as $mhs) : ?>
                             <tr>
-                                <td><?= $no; ?></td>
-                                <td><?= $no; ?></td>
-                                <td><?= $no; ?></td>
-                                <td><?= $no; ?></td>
-                                <td><?= $no; ?></td>
-                                <td><?= $no; ?></td>
+                                <td><?= $no++; ?></td>
+                                <td><img src="template/img/<?= $mhs['gambar']; ?>" width="50"></td>
+                                <td><?= $mhs['nama']; ?></td>
+                                <td><?= $mhs['npm']; ?></td>
+                                <td><?= $mhs['email']; ?></td>
+                                <td><?= $mhs['jurusan']; ?></td>
                                 <td>
-                                    <a href="hapus.php" onclick="return confirm('Yakin?');" class="btn btn-danger">
+                                    <a href="hapus.php" onclick="return confirm('Yakin?');"
+                                        class="btn btn-danger btn-sm">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>
                             </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
